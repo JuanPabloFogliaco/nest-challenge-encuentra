@@ -45,29 +45,14 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-## Test
+## Local host access Swagger-ui 
+# http://localhost:3001/api
 
-```bash
-# unit tests
-$ npm run test
+##Endpoints: 
 
-# e2e tests
-$ npm run test:e2e
+/race : Ejecuta por medio de fetch una consulta GET al endpoint -> 'https://pastebin.com/raw/zCrY8y8R' para obtener los datos de drivers y results.
+        Luego de obtener la informacion tal cual como viene armada, es retornada hacia el front end. Con el objetivo de reemplazar el mock que tiene el frontend.
+   
+/race/sorted: Ejecuta por medio de fetch una consulta GET al endpoint -> 'https://pastebin.com/raw/zCrY8y8R' para obtener los datos de drivers y results. Luego ordeno los resultados en base a                la posicion y tiempo, y filtro cada resultado que tiene su driver_id por el driver (corredor) con toda su info. De esta forma armo un nuevo tipo de respuesta ya ordenada y 
+             filtrada, para delegarle esta responsabilidad al endpoint del BFF. Al front ya le retorno la data ordenada y filtrada.
 
-# test coverage
-$ npm run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
