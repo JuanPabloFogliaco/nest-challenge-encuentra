@@ -1,10 +1,17 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { ExpressAdapter } from '@nestjs/platform-express';
+import * as express from 'express';
+import * as serverless from 'serverless-http';
+
+const expressApp = express();
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-
+  const app = await NestFactory.create(
+    AppModule,
+    new ExpressAdapter(expressApp),
+  );
   //Permito el ingreso a cualquier url front que consulte el service, no defino un origen puntual.
   app.enableCors();
 
@@ -21,3 +28,4 @@ async function bootstrap() {
   await app.listen(3001);
 }
 bootstrap();
+export const handler = serverless(expressApp);
